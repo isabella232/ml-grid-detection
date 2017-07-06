@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="assets/styles/main.css">
     <!-- endbuild -->
     <link rel="author" type="text/plain" href="humans.txt" />
+    <link href="https://fonts.googleapis.com/css?family=Lato:700,700i|Open+Sans:300,300i,400,400i,700,700i" rel="stylesheet" />
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
     
@@ -27,31 +28,136 @@
       </div>
     <![endif]-->
 
-    <div id="site-canvas">
-      <!-- Content goes inside #site-canvas -->
-      <div class="header">
-        <h1><img src="/assets/graphics/layout/ds-logo-pos.svg" alt="Development Seed logotype" width="188" height="32" /></h1>
-        <p>In the beginning the Universe was created.<p>
-        <p>This has made a lot of people very angry and been widely regarded as a bad move.</p>
+  <!-- page -->
+  <div class="page page--homepage">
+
+    <header class="page__header" role="banner">
+      <div class="inner">
+        <div class="page__headline">
+          <h1 class="page__title">
+            <a href="/" title="Visit homepage">
+              <img src="../assets/graphics/layout/ds-logo-neg.svg" alt="Development Seed logo" width="188" height="32" />
+              <span>Development Seed</span>
+            </a>
+          </h1>
+        </div>
+        <nav class="page__prime-nav">
+          <h2 class="page__prime-nav-title"><a href="#nav-block-browse"><span>Menu</span></a></h2>
+          <div class="nav-block nav-block--browse" id="nav-block-browse">
+            <ul class="browse-menu">
+              <li><a href="#" title="Visit page" class="browse-menu__item browse-menu__item--active"><span>Home</span></a></li>
+              <li><a href="#" title="Visit page" class="browse-menu__item"><span>Page 2</span></a></li>
+              <li><a href="#" title="Visit page" class="browse-menu__item"><span>Page 3</span></a></li>
+              <li><a href="#" title="Visit page" class="browse-menu__item"><span>Page 4</span></a></li>
+            </ul>
+          </div>
+        </nav>
       </div>
-      <!-- Content goes inside #site-canvas -->
-    </div>
+    </header>
 
-    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-    <script>
-      (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-      function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-      e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-      e.src='//www.google-analytics.com/analytics.js';
-      r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-      ga('create','UA-XXXXX-X');ga('send','pageview');
-    </script>
+    <main class="page__body" role="main">
 
-    <!-- build:js assets/scripts/vendor.js -->
-    <script src="assets/scripts/vendor.js"></script>
-    <!-- endbuild -->
-    <!-- build:js assets/scripts/bundle.js -->
-    <script src="assets/scripts/bundle.js"></script>
-    <!-- endbuild -->
+      <!-- inpage -->
+      <section class="inpage">
+        <header class="inpage__header">
+          <div class="inner">
+            <div class="inpage__headline">
+              <h1 class="inpage__title">Machine Learning for Africa's Grid</h1>
+              <div class="inpage__introduction">
+                <p>Results of Applying Our Skynet Model.</p>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <div class="inpage__body">
+
+          <!-- fold -->
+          <div class="fold">
+            <div class="inner">
+
+              <!-- showcase -->
+              <div class="showcase prose prose--responsive">
+                <h2 id="">Summary</h2>
+                <p>We demonstrated the feasibility of using Skynet to detect high voltage lines at very low resolutions using a previously unused imagery band called SAR-C. We also demonstrated that readily available optical imagery sources with existing training data, even at the highest resolutions, cannot detect power lines. However, we identified several new approaches methods that could make optical imagery workable.</p>
+
+                <h2 id="">Background</h2>
+                <h3 id="">SAR-C Images </h3>
+                <p>SAR-C images are captured in the same band of radio waves that wifi uses. In many respects, they are simpler to deal with than optical images - they don’t have clouds or shadows. They are also readily available. The ESA provides global SAR coverage with it’s Sentinel-1 constellation of satellites.</p>
+
+                <p>Usually, SAR images measure  “surface roughness” (though they can also be used to measure a variety of other things, like terrain altitude). Very smooth surfaces, like desert, appear black, and rough surfaces like trees appear lighter. Somewhat rough surfaces like grass are grey.</p>
+
+                <p>SAR reflects off of artificial surfaces like concrete  and metal, making it useful for estimating population density. This property is also uniquely useful for detecting the power grid.</p> 
+
+                <p>Since many high voltage power pylons are made of steel, their glare is visible even at very low resolutions. The power grid shows clearly as rows of dots even when it is invisible in optical images.</p>
+
+                <h3 id="">Machine Learning Using Satellite Images and Map Features</h3>
+                <p>To detect whether a tiles has a power line in it, the computer uses a labeled dataset (tiles where it’s known for sure whether or not there’s a powerline) to make a guess about whether there’s a powerline in an unlabeled tile. We label the dataset using features from maps like OpenStreetMap or the Africa Grid Explorer.</p>
+
+                <p>To make valid predictions, the computer must have a lot (thousands) of accurate labeled tiles. This approach works really well for finding streets and buildings because there are typically lots of accurate OSM features to use. It’s more challenging to use for power grid detection because powerlines are a lot less common.</p>
+
+                <h2 id="">Results</h2>
+                <h3 id="">Optical Images</h3>
+                <p>Even with the best training data, powerlines in low resolution optical images could not be detected. However, it is possible that this is not a fundamental limitation, but caused by our data processing. Our current data processing setup imposes several limitations which, if resolved, could make optical imagery effective at this task.</p>
+
+                <p>Currently, we use an approach called semantic segmentation, where we ask the computer to “draw” the lines on the image. However, zoomed this far in, the difference between the physical location of the powerline and the location reported in Africa Grid Explorer is significant. The location of the line on the image therefore uncorrelated with the “correct” answer provided by the label. The program has no information it can use to make guesses.</p>
+
+                <p>We are working on switching to a different method, image classification, where the computer merely guesses whether or not the image container a power line. This has some disadvantages - it requires more labeled data and more data preprocessing. However, it should make it possible to use less accurate maps as labels.</p>
+
+                <p>Another contributing factor to the lack of success in using optical images is the image file format we use. Currently, all of the satellite images we use are downloaded as JPEGs, a format reduces file size by distorting sharp edges in images. Because we are trying to detect tiny objects with sharp edges (powerlines and pylons), JPEG makes them less visible.</p>
+
+                <h3 id="">SAR Images</h3>
+                <p>About half of power lines could be accurately detected using SAR images. The success of the model was highly terrain dependent. Lines could not be detected in mountains, for example. Given that, in these situations, the lines aren’t visible to humans either, this seems to be a fundamental technical limitation of the imagery.</p> 
+
+                <p>Other times, mountainous terrain gives false positives - the program guesses the existence of a powerline where there isn’t one. This problem could be solved by preprocessing the data to remove tiles with mountains in them or by adding Landsat images as an additional input which would allow the program detect what sorts of terrain it is seeing and avoid false positives accordingly.</p>
+
+                <p>Currently, our program is about 75% accurate (for a given image, there is a 75% chance that the program correctly decided whether or not it has a powerline in it). This can be tuned to favor completeness of up to 85% (i.e. 85% of images with powerlines are identified as having power lines) or accuracy of up to 80% (i.e. 80% of images identified as having power lines actually have power lines in them).</p>
+
+                <h2 id="">Further Steps</h2>
+                <h3 id="">Use Multispectral Imagery</h3>
+                <p>Combining multiple sources of satellite imagery (i.e. SAR and Optical) would give our software more information, significantly reducing false positives. This would require rewriting parts of our skynet-data tool.</p>
+
+                <h3 id="">Create an Image Classification Model</h3>
+                <p>We’ve already created the model, but we’d need to rework skynet-data to handle much larger datasets.</p>
+
+              </div>
+              <!--/ showcase -->
+
+            </div>
+          </div>
+          <!--/ fold -->
+
+        </div>
+
+      </section>
+      <!--/ inpage -->
+
+    </main>
+
+    <footer class="page__footer" role="contentinfo">
+      <div class="inner">
+        <p>Made by <a href="https://developmentseed.org" title="Visit Development Seed website">Development Seed</a>.</p>
+      </div>
+    </footer>
+
+  </div>
+  <!--/ page -->
+
+  <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+  <script>
+    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+    function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+    e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+    e.src='//www.google-analytics.com/analytics.js';
+    r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+    ga('create','UA-XXXXX-X');ga('send','pageview');
+  </script>
+
+  <!-- build:js assets/scripts/vendor.js -->
+  <script src="assets/scripts/vendor.js"></script>
+  <!-- endbuild -->
+  <!-- build:js assets/scripts/bundle.js -->
+  <script src="assets/scripts/bundle.js"></script>
+  <!-- endbuild -->
 </body>
 </html>

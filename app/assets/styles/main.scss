@@ -22,27 +22,21 @@
 
 @import "bourbon";
 
+@import "jeet";
 
-/* Reboot
+@import "ui-seed";
+
+
+/* Global
    ========================================================================== */
 
-@import "normalize";
-@import "reset";
-
-/**
- * Using Kenneth Ormandy's OpenType features—ligatures, kerning, and
- * more—to Normalize.css:
- * https://github.com/kennethormandy/normalize-opentype.css
- */
-
-@import "normalize-opentype";
+@import "global/pages";
+@import "global/inpages";
+@import "global/folds";
+@import "global/page-prime-nav";
 
 
-/* Settings
+/* Homepage
    ========================================================================== */
 
-
-/* Main
-   ========================================================================== */
-
-@import "base";
+@import "homepage/content";
