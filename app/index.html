@@ -157,7 +157,7 @@
 
                 <h3 id="">SAR Images</h3>
 
-                <p>>About half of power lines could be accurately detected using SAR images. The success of the model was highly terrain dependent. Lines could not be detected in mountains, for example. Given that, in these situations, the lines aren’t visible to humans either, this seems to be a fundamental technical limitation of the imagery.</p> 
+                <p>About half of power lines could be accurately detected using SAR images. The success of the model was highly terrain dependent. Lines could not be detected in mountains, for example. Given that, in these situations, the lines aren’t visible to humans either, this seems to be a fundamental technical limitation of the imagery.</p> 
                 <figure>
                   <img src="assets/graphics/content/too-many-mountains.png" alt="The powerlines aren't visible in the SAR image because there is so much noise from the surrounding moutnains.">
                   <figcaption>Left: SAR Image, Right: Known Powerline Locations</figcaption>
@@ -172,7 +172,7 @@
                 <div id="map" style="height: 256px;"></div>
                  <script>
                    var mymap = L.map('map').setView([21.943, -16.7871], 12);
-                   L.tileLayer('http://a.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>', maxZoom: 12}).addTo(mymap);
+                   L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token={accessToken}', {attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>', accessToken: 'pk.eyJ1IjoiZGV2c2VlZCIsImEiOiJnUi1mbkVvIn0.018aLhX0Mb0tdtaT2QNe2Q', maxZoom: 12}).addTo(mymap);
                    L.tileLayer('https://s3.amazonaws.com/ds-skynet-power/mixed-lr-test-worldwide-20k-iter/{z}/{x}/{y}.png', {maxZoom: 12}).addTo(mymap);
                  </script>
 
