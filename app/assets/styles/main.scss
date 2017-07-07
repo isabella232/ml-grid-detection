@@ -7,36 +7,46 @@
  * https://github.com/necolas/idiomatic-css
  */
 
-/* Charset */
-
-@charset "UTF-8";
-
-
-/* Libraries
+/* Third-party
    ========================================================================== */
 
 /**
- * Using Bourbon for extended SASS functionality:
+ * Bourbon for extended SASS functionality:
  * http://bourbon.io/
  */
 
 @import "bourbon";
 
+/**
+ * Jeet, a grid system designed for humans:
+ * http://jeet.gs/
+ */
+
 @import "jeet";
 
+
+/* Ui Seed
+   ========================================================================== */
+
 @import "ui-seed";
+
+
+/* Core
+   ========================================================================== */
+
+@import "core/base";
+@import "core/typography";
 
 
 /* Global
    ========================================================================== */
 
-@import "global/pages";
-@import "global/inpages";
-@import "global/folds";
+@import "global/page";
+@import "global/inpage";
 @import "global/page-prime-nav";
 
 
-/* Homepage
+/* One pager
    ========================================================================== */
 
-@import "homepage/content";
+@import "one-pager/global";
