@@ -47,6 +47,7 @@
     width: ($global-spacing / 2);
     background: $link-color;
     content: "";
+    transition: all 0.24s ease 0s;
   }
 }
 
