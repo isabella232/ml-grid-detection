@@ -1,0 +1,24 @@
+/* ==========================================================================
+   One pager: Global
+   ========================================================================== */
+
+.page--one-pager {
+  .inpage__header {
+    display: none;
+  }
+
+  .inpage__body {
+    padding: ($global-spacing * 2) 0;
+
+    h2 {
+      &::after {
+        content: '';
+        width: 2rem;
+        height: 1px;
+        background: $base-font-color;
+        display: block;
+        margin: 0.75rem 0 0 0;
+      }
+    }
+  }
+}
