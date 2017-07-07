@@ -172,8 +172,7 @@
                 <div id="map" style="height: 256px;"></div>
                  <script>
                    var mymap = L.map('map').setView([21.943, -16.7871], 12);
-                   token = prompt("Mapbox Access Token")
-                   L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>', accessToken: token, maxZoom: 12, id: 'mapbox.streets'}).addTo(mymap);
+                   L.tileLayer('http://a.tile.openstreetmap.org/{z}/{x}/{y}.png', {attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>', maxZoom: 12}).addTo(mymap);
                    L.tileLayer('https://s3.amazonaws.com/ds-skynet-power/mixed-lr-test-worldwide-20k-iter/{z}/{x}/{y}.png', {maxZoom: 12}).addTo(mymap);
                  </script>
 
