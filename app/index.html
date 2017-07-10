@@ -61,7 +61,7 @@
           <div class="page__headline">
             <a href="/" title="Visit homepage">
               <h1 class="page__title">Machine Learning for Africa's Grid</h1>
-              <p class="page__subtitle">Results of Applying Our Skynet Model.</p>
+              <p class="page__subtitle">Results of Applying Our Skynet Model</p>
             </a>
           </div>
 
@@ -167,11 +167,11 @@
                   <img id="img-right" src="assets/graphics/content/false-positive.png" alt="The SAR image of mountains looks sort of like powerlines, so the algorithm produces a false positive."><img id="img-right" src="assets/graphics/content/sar-prediction.png" alt="The algorithm perfectly traces a powerline when it goes over smooth terain like farmland.">
                   <figcaption>Left: False positive in mountainous area, Right: Correct prediction in farmland</figcaption>
                 </figure>
-                <p>Currently, our program is about 75% accurate (for a given image, there is a 75% chance that the program correctly decided whether or not it has a powerline in it). This can be tuned to favor completeness of up to 85% (i.e. 85% of images with powerlines are identified as having power lines) or accuracy of up to 80% (i.e. 80% of images identified as having power lines actually have power lines in them).</p>
+                <p>Currently, our program is about 75% accurate (for a given image, there is a 75% chance that the program correctly decided whether or not it has a powerline in it). This can be tuned to favor completeness of up to 85% (i.e. 85% of images with powerlines are identified as having power lines) or precision of up to 80% (i.e. 80% of images identified as having power lines actually have power lines in them).</p>
 
                 <div id="map" style="height: 256px;"></div>
                  <script>
-                   var mymap = L.map('map', {zoomControl: false, minZoom:12}).setView([21.943, -16.7871], 12);
+                   var mymap = L.map('map').setView([21.943, -16.7871], 12);
                    L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token={accessToken}', {attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>', accessToken: 'pk.eyJ1IjoiZGV2c2VlZCIsImEiOiJnUi1mbkVvIn0.018aLhX0Mb0tdtaT2QNe2Q', maxZoom: 12}).addTo(mymap);
                    L.tileLayer('https://s3.amazonaws.com/ds-skynet-power/mixed-lr-test-worldwide-20k-iter/{z}/{x}/{y}.png', {maxZoom: 12}).addTo(mymap);
                  </script>
