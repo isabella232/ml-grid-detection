@@ -175,7 +175,7 @@
 
                 <div id="map" style="height: 360px;"></div>
                  <script>
-                   var mymap = L.map('map').setView([-29.133, 25.25], 12);
+                   var mymap = L.map('map', {zoomControl:false, minZoom:12}).setView([-29.133, 25.25], 12);
                    L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token={accessToken}', {attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>', accessToken: 'pk.eyJ1IjoiZGV2c2VlZCIsImEiOiJnUi1mbkVvIn0.018aLhX0Mb0tdtaT2QNe2Q', maxZoom: 12}).addTo(mymap);
                    L.tileLayer('https://s3.amazonaws.com/ds-skynet-power/mixed-lr-test-worldwide-20k-iter/{z}/{x}/{y}.png', {maxZoom: 12}).addTo(mymap);
                  </script>
