@@ -172,8 +172,10 @@
                   <figcaption>Left: SAR Image, Right: Known Powerline Locations</figcaption>
                 </figure>
                 <p>Currently, our program is about 75% accurate (for a given image, there is a 75% chance that the program correctly decided whether or not it has a powerline in it). This can be tuned to favor completeness of up to 85% (i.e. 85% of images with powerlines are identified as having power lines) or precision of up to 80% (i.e. 80% of images identified as having power lines actually have power lines in them).</p>
-
-                <div id="map" style="height: 360px;"></div>
+                <figure>
+                  <div id="map" style="height: 360px;"></div>
+                  <figcaption>An interactive map showing the model's predictions in an area of South Africa with a lot of powerlines</figcaption>
+                </figure>
                  <script>
                    var mymap = L.map('map', {zoomControl:false, minZoom:12}).setView([-29.133, 25.25], 12);
                    L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token={accessToken}', {attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>', accessToken: 'pk.eyJ1IjoiZGV2c2VlZCIsImEiOiJnUi1mbkVvIn0.018aLhX0Mb0tdtaT2QNe2Q', maxZoom: 12}).addTo(mymap);
