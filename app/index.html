@@ -178,15 +178,16 @@
                   <figcaption>An interactive map showing the model's predictions in an area of South Africa with a lot of powerlines</figcaption>
                 </figure>
 
-                <h2 id="title-further-steps">Further Steps</h2>
+                <h2 id="title-conclusions">Conclusions</h2>
 
-                <h3 id="">Use Multispectral Imagery</h3>
+                <h3>Feasability</h3>
+                <p>The current SAR model, if used in conjunction with human reviewers, would provide a feasible option for mapping Africa's high voltage power infrastructure. Given our model's accuracy and recall, it would narrow the area of Africa that might contain high voltage powerlines down to 160,000 zoom level 12 tiles, which could be processed with a program like Mapswipe with 133 person hours. Total server costs for processing every tile in Africa would be about $275.</p>
 
-                <p>Combining multiple sources of satellite imagery (i.e. SAR and Optical) would give our software more information, significantly reducing false positives. This would require rewriting parts of our skynet-data tool.</p>
+                <h3>Further Steps</h3>
 
-                <h3 id="">Create an Image Classification Model</h3>
+                <p>Given that it is currently feasible to search all of Africa for high voltage pylons, future research should focus detecting low voltage pylons.</p>
 
-                <p>We’ve already created the model, but we’d need to rework skynet-data to handle much larger datasets.</p>
+                <p>Image Classification Approach: We’ve already created the model, but we’d need to rework skynet-data to handle much larger datasets.</p>
 
               </div>
             
