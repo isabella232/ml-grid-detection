@@ -221,9 +221,9 @@
 
     </script>
     <script>
-      var mymap = L.map('map', {zoomControl:false, minZoom:12}).setView([-29.133, 25.25], 12);
-      L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token={accessToken}', {attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>', accessToken: 'pk.eyJ1IjoiZGV2c2VlZCIsImEiOiJnUi1mbkVvIn0.018aLhX0Mb0tdtaT2QNe2Q', maxZoom: 12}).addTo(mymap);
-      L.tileLayer('https://s3.amazonaws.com/ds-skynet-power/mixed-lr-test-worldwide-20k-iter/{z}/{x}/{y}.png', {maxZoom: 12}).addTo(mymap);
+      var mymap = L.map('map', {zoomControl:false, minZoom:12}).setView([-30.1, 26.5], 12);
+      L.tileLayer('https://tiles-b.descarteslabs.com/xyz/sentinel-1_v2/vv_2014-2017/{z}/{x}/{y}/tile.jpeg?={accessToken}', { accessToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc19hbm9uIjpmYWxzZSwic3ViIjoiZ29vZ2xlLW9hdXRoMnwxMTAyMTc0MjAwODgyNjY1MDgxODUiLCJpc3MiOiJodHRwczovL2Rlc2NhcnRlc2xhYnMuYXV0aDAuY29tLyIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoiRWxpIExpdHdhY2siLCJncm91cHMiOlsicHVibGljIiwiYmV0YSJdLCJpYXQiOjE0OTk3MDY3MTksImV4cCI6MTQ5OTc0MjcxOSwiZW1haWwiOiJlbGlAZGV2ZWxvcG1lbnRzZWVkLm9yZyIsImF1ZCI6IlpPQkFpNFVST2w1Z0taSXB4eGx3T0VmeDhLcHFYZjJjIn0.gJ7uysT9EZ0zoPVflwpGBRL4hIlQPZMKiBlMWidX1aQ', maxZoom: 12}).addTo(mymap);
+      L.tileLayer('https://s3.amazonaws.com/ds-skynet-power/mixed-lr-test-worldwide-20k-iter/{z}/{x}/{y}.png', {maxZoom: 12,  opacity: .5}).addTo(mymap);
     </script>
 
     <!-- build:js assets/scripts/vendor.js -->
