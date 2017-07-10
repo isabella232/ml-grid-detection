@@ -78,6 +78,6 @@
   "dependencies": {
     "jeet": "^7.1.0",
     "lodash.defaultsdeep": "^4.6.0",
-    "ui-seed": "git+ssh://git@github.com/developmentseed/ui-seed.git#v0.1.0-alpha"
+    "ui-seed": "git://github.com/developmentseed/ui-seed.git#v0.1.0-alpha"
   }
 }

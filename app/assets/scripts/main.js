@@ -18,6 +18,7 @@ menu.forEach(node => {
     scrollContainer.scrollTop = scrollContainer.scrollTop + target.getBoundingClientRect().top - 16;
   });
 
+  // eslint-disable-next-line
   new Waypoint({
     element: target,
     context: scrollContainer,
