@@ -115,19 +115,19 @@
                 <p>SAR-C images are captured in the same band of radio waves that wifi uses. In many respects, they are simpler to deal with than optical images - they don’t have clouds or shadows. They are also readily available. The ESA provides global SAR coverage with it’s Sentinel-1 constellation of satellites.</p>
                 
                 <p>Usually, SAR images measure  “surface roughness” (though they can also be used to measure a variety of other things, like terrain altitude). Very smooth surfaces, like desert, appear black, and rough surfaces like trees appear lighter. Somewhat rough surfaces like grass are grey.</p>
-                <figure>
+                <figure class="figure.align-center">
                   <img src="assets/graphics/content/rainforest-desert.png" alt="In these SAR images, the desert is black with blue stripes at the tops of dunes and the rainforest is splotchy orange and yellow.">
                   <figcaption>Left: Desert, Right: Rainforest</figcaption>
                 </figure>
                 
                 <p>SAR reflects off of artificial surfaces like concrete  and metal, making it useful for estimating population density. This property is also uniquely useful for detecting the power grid.</p> 
-                <figure>
+                <figure class="figure.align-center">
                   <img src="assets/graphics/content/tokyo.png" alt="In this SAR image, Tokyo stands out, bright yellow against the less populated background. The densly populated downtown area is the brightest.">
                   <figcaption>Tokyo</figcaption>
                 </figure>
 
                 <p>Since many high voltage power pylons are made of steel, their glare is visible even at very low resolutions. The power grid shows clearly as rows of dots even when it is invisible in optical images.</p>
-                <figure>
+                <figure class="figure.align-center">
                   <img src="assets/graphics/content/sar-optical.png" alt="In the SAR image, a row of yellow dots, the powerlines, is clearly visible. In the optical image of the same location, there are no visible powerlines.">
                   <figcaption>Left: SAR, Right: Optical<br>The images are of the same location</figcaption>
                 </figure>
@@ -143,35 +143,39 @@
                 <h3 id="">Optical Images</h3>
 
                 <p>Even with the best training data, powerlines in low resolution optical images could not be detected. However, it is possible that this is not a fundamental limitation, but caused by our data processing. Our current data processing setup imposes several limitations which, if resolved, could make optical imagery effective at this task.</p>
-                <figure>
-                  <img id="img-right" src="assets/graphics/content/failed-optical.png" alt="Even though the powerlines are visible, the prediction is incorrect.">
+                <figure class="figure.align-center">
+                  <img src="assets/graphics/content/failed-optical.png" alt="Even though the powerlines are visible, the prediction is incorrect.">
                   <figcaption>Left: Powerlines, Right: Prediction</figcaption>
                 </figure>
                 <p>Currently, we use an approach called semantic segmentation, where we ask the computer to “draw” the lines on the image. However, zoomed this far in, the difference between the physical location of the powerline and the location reported in Africa Grid Explorer is significant. The location of the line on the image therefore uncorrelated with the “correct” answer provided by the label. The program has no information it can use to make guesses.</p>
                 <p>We are working on switching to a different method, image classification, where the computer merely guesses whether or not the image container a power line. This has some disadvantages - it requires more labeled data and more data preprocessing. However, it should make it possible to use less accurate maps as labels.</p>
                 <p>Another contributing factor to the lack of success in using optical images is the image file format we use. Currently, all of the satellite images we use are downloaded as JPEGs, a format reduces file size by distorting sharp edges in images. Because we are trying to detect tiny objects with sharp edges (powerlines and pylons), JPEG makes them less visible.</p>
-                <figure>
-                  <img class="img.align-right" src="assets/graphics/content/jpeg-issue.png" alt="The JPEG'd image has less distinct lines.">
+                <figure class="figure.align-center">
+                  <img src="assets/graphics/content/jpeg-issue.png" alt="The JPEG'd image has less distinct lines.">
                   <figcaption>Left: Noisy JPEG'd image, Right: Clean PNG image</figcaption>
                 </figure>
 
                 <h3 id="">SAR Images</h3>
 
                 <p>About half of power lines could be accurately detected using SAR images. The success of the model was highly terrain dependent. Lines could not be detected in mountains, for example. Given that, in these situations, the lines aren’t visible to humans either, this seems to be a fundamental technical limitation of the imagery.</p> 
-                <figure>
+                <figure class="figure.align-center">
+                  <img src="assets/graphics/content/sar-prediction.png" alt="The algorithm perfectly traces a powerline when it goes over smooth terain like farmland.">
+                  <figcaption>Correct prediction in farmland</figcaption>
+                </figure>
+                <p>Other times, mountainous terrain gives false positives - the program guesses the existence of a powerline where there isn’t one. This problem could be solved by preprocessing the data to remove tiles with mountains in them or by adding Landsat images as an additional input which would allow the program detect what sorts of terrain it is seeing and avoid false positives accordingly.</p>
+                <figure class="figure.align-center">
+                  <img src="assets/graphics/content/false-positive.png" alt="The SAR image of mountains looks sort of like powerlines, so the algorithm produces a false positive.">
+                  <figcaption>False positive in mountainous aread</figcaption>
+                </figure>
+                <figure class="figure.align-center">
                   <img src="assets/graphics/content/too-many-mountains.png" alt="The powerlines aren't visible in the SAR image because there is so much noise from the surrounding moutnains.">
                   <figcaption>Left: SAR Image, Right: Known Powerline Locations</figcaption>
                 </figure>
-                <p>Other times, mountainous terrain gives false positives - the program guesses the existence of a powerline where there isn’t one. This problem could be solved by preprocessing the data to remove tiles with mountains in them or by adding Landsat images as an additional input which would allow the program detect what sorts of terrain it is seeing and avoid false positives accordingly.</p>
-                <figure>
-                  <img id="img-right" src="assets/graphics/content/false-positive.png" alt="The SAR image of mountains looks sort of like powerlines, so the algorithm produces a false positive."><img id="img-right" src="assets/graphics/content/sar-prediction.png" alt="The algorithm perfectly traces a powerline when it goes over smooth terain like farmland.">
-                  <figcaption>Left: False positive in mountainous area, Right: Correct prediction in farmland</figcaption>
-                </figure>
                 <p>Currently, our program is about 75% accurate (for a given image, there is a 75% chance that the program correctly decided whether or not it has a powerline in it). This can be tuned to favor completeness of up to 85% (i.e. 85% of images with powerlines are identified as having power lines) or precision of up to 80% (i.e. 80% of images identified as having power lines actually have power lines in them).</p>
 
-                <div id="map" style="height: 256px;"></div>
+                <div id="map" style="height: 360px;"></div>
                  <script>
-                   var mymap = L.map('map').setView([21.943, -16.7871], 12);
+                   var mymap = L.map('map').setView([-29.133, 25.25], 12);
                    L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token={accessToken}', {attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>', accessToken: 'pk.eyJ1IjoiZGV2c2VlZCIsImEiOiJnUi1mbkVvIn0.018aLhX0Mb0tdtaT2QNe2Q', maxZoom: 12}).addTo(mymap);
                    L.tileLayer('https://s3.amazonaws.com/ds-skynet-power/mixed-lr-test-worldwide-20k-iter/{z}/{x}/{y}.png', {maxZoom: 12}).addTo(mymap);
                  </script>
