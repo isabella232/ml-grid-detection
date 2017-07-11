@@ -75,7 +75,7 @@
                   <li><a href="#title-summary" title="Jump to section" class="ppn__menu-item ppn__menu-item--active">Summary</a></li>
                   <li><a href="#title-background" title="Jump to section" class="ppn__menu-item">Background</a></li>
                   <li><a href="#title-results" title="Jump to section" class="ppn__menu-item">Results</a></li>
-                  <li><a href="#title-further-steps" title="Jump to section" class="ppn__menu-item">Further Steps</a></li>
+                  <li><a href="#title-conclusions" title="Jump to section" class="ppn__menu-item">Conclusions</a></li>
                 </ul>
               </section>
 
@@ -143,7 +143,9 @@
 
                 <h3 id="">Optical Images</h3>
 
-                <p>Even with the best training data, powerlines in low resolution optical images could not be detected. However, it is possible that this is not a fundamental limitation, but caused by our data processing. Our current data processing setup imposes several limitations which, if resolved, could make optical imagery effective at this task.</p>
+                <p>We quickly determined that we could not use one meter resolution images to identify powerlines because they usually were not visible at that resolution. Due to the availability of imagery, this eliminated training in areas besides South Africa.</p>
+
+                <p>There, even with the best training data, powerlines in low resolution optical images could not be detected. However, it is possible that this is not a fundamental limitation, but caused by our data processing. Our current data processing setup imposes several limitations which, if resolved, could make optical imagery effective at this task.</p>
                 <figure class="align-center">
                   <img src="assets/graphics/content/failed-optical.png" alt="Even though the powerlines are visible, the prediction is incorrect." />
                   <figcaption>Left: Powerlines, Right: Prediction</figcaption>
@@ -157,8 +159,8 @@
                 </figure>
 
                 <h3 id="">SAR Images</h3>
-
-                <p>About half of power lines could be accurately detected using SAR images. The success of the model was highly terrain dependent. Lines could not be detected in mountains, for example. Given that, in these situations, the lines aren’t visible to humans either, this seems to be a fundamental technical limitation of the imagery.</p> 
+                <p>With SAR images, we were again limited to training in South Africa. The western African countries we investigated didn't have enough label data for powerlines with metal pylons. It is possible that this is because there aren't many metal pylons in these countries, or it could simply be that they haven't been recorded as throughly as in South Africa.</p>
+                <p>There, about half of power lines could be accurately detected using SAR images. The success of the model was highly terrain dependent. Lines could not be detected in mountains, for example. Given that, in these situations, the lines aren’t visible to humans either, this seems to be a fundamental technical limitation of the imagery.</p> 
                 <figure class="align-center">
                   <img src="assets/graphics/content/sar-prediction.png" alt="The algorithm perfectly traces a powerline when it goes over smooth terain like farmland." />
                   <figcaption>Correct prediction in farmland</figcaption>
@@ -181,14 +183,18 @@
                 <h2 id="title-conclusions">Conclusions</h2>
 
                 <h3>Feasability</h3>
-                <p>The current SAR model, if used in conjunction with human reviewers, would provide a feasible option for mapping Africa's high voltage power infrastructure. Given our model's accuracy and recall, it would narrow the area of Africa that might contain high voltage powerlines down to 160,000 zoom level 12 tiles, which could be processed with a program like Mapswipe with 133 person hours. Total server costs for processing every tile in Africa would be about $275.</p>
+                <p>The current SAR model, if used in conjunction with human reviewers, would provide a feasible option for mapping Africa's high voltage power infrastructure. Given our model's accuracy and recall, it would narrow the area of Africa that might contain high voltage powerlines down to 160,000 zoom level 12 tiles, which could be verified on a program like Mapswipe with around 150 person hours. Total server costs for processing every tile in Africa would be about $275.</p>
 
                 <h3>Further Steps</h3>
 
-                <p>Given that it is currently feasible to search all of Africa for high voltage pylons, future research should focus detecting low voltage pylons.</p>
+                <p>Given that it is currently feasible to search all of Africa for high voltage pylons, future research should focus detecting low voltage pylons. We identified several next steps that could be taken to attempt to identify low voltage pylons:</p>
+                <ul>•Impliment an image classification model</ul>
+                <ul>•Switch to png image sources</ul>
+                <ul>•Recreate powerline dataset, dr</ul>
+                <ul>•Create a dataset with pylon locations as opposed to line locations (will require some manual labeling)</ul>
+                <ul>•Experiement with diffrent techinques (larger tile sizes, diffrent models) that allow the model to use lines as labels even when only pylons are visible</ul>
 
-                <p>Image Classification Approach: We’ve already created the model, but we’d need to rework skynet-data to handle much larger datasets.</p>
-
+                <p> To improve high voltage line detection preformance, we could combine imagery from multiple sources (ie. SAR, infared, and optical) to so that the model can identify mountains reduce false positives. The infrastructure to do this would be useful for other tasks, </p>
               </div>
             
             </div>
@@ -222,9 +228,10 @@
 
     </script>
     <script>
-      var mymap = L.map('map', {zoomControl:false, minZoom:12}).setView([-30.1, 26.5], 12);
-      L.tileLayer('https://tiles-b.descarteslabs.com/xyz/sentinel-1_v2/vv_2014-2017/{z}/{x}/{y}/tile.jpeg?={accessToken}', { accessToken: 'OurDLToken', maxZoom: 12}).addTo(mymap);
-      L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token={accessToken}', {attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>', accessToken: 'pk.eyJ1IjoiZGV2c2VlZCIsImEiOiJnUi1mbkVvIn0.018aLhX0Mb0tdtaT2QNe2Q', maxZoom: 12}).addTo(mymap);
+      //var mymap = L.map('map', {zoomControl:false, minZoom:12}).setView([-30.1, 26.5], 12);
+      var mymap = L.map('map', {zoomControl:true}).setView([-30.1, 26.5], 12);
+      //L.tileLayer('https://api.mapbox.com/styles/v1/mapbox/light-v9/tiles/256/{z}/{x}/{y}?access_token={accessToken}', {attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>', accessToken: 'pk.eyJ1IjoiZGV2c2VlZCIsImEiOiJnUi1mbkVvIn0.018aLhX0Mb0tdtaT2QNe2Q', maxZoom: 12}).addTo(mymap);
+      L.tileLayer('https://tiles-b.descarteslabs.com/xyz/sentinel-1_v2/vv_2014-2017/{z}/{x}/{y}/tile.jpeg?={accessToken}', { accessToken: 'Our-DL-Token', maxZoom: 12}).addTo(mymap);
       L.tileLayer('https://s3.amazonaws.com/ds-skynet-power/mixed-lr-test-worldwide-20k-iter/{z}/{x}/{y}.png', {maxZoom: 12,  opacity: .5}).addTo(mymap);
     </script>
 
