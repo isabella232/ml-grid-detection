@@ -88,15 +88,6 @@
 
         <!-- inpage -->
         <section class="inpage">
-          <header class="inpage__header">
-            <div class="inner">
-              <div class="inpage__headline">
-                <p class="inpage__subtitle">Section title</p>
-                <h1 class="inpage__title">Page title</h1>
-              </div>
-            </div>
-          </header>
-
           <div class="inpage__body">
             <div class="inner">
 
@@ -188,12 +179,13 @@
                 <h3>Further Steps</h3>
 
                 <p>Given that it is currently feasible to search all of Africa for high voltage pylons, future research should focus detecting low voltage pylons. We identified several next steps that could be taken to attempt to identify low voltage pylons:</p>
-                <ul>•Impliment an image classification model</ul>
-                <ul>•Switch to png image sources</ul>
-                <ul>•Recreate powerline dataset, dr</ul>
-                <ul>•Create a dataset with pylon locations as opposed to line locations (will require some manual labeling)</ul>
-                <ul>•Experiement with diffrent techinques (larger tile sizes, diffrent models) that allow the model to use lines as labels even when only pylons are visible</ul>
-
+                <ul>
+                  <li>Impliment an image classification model</li>
+                  <li>Switch to png image sources</li>
+                  <li>Recreate powerline dataset</li>
+                  <li>Create a dataset with pylon locations as opposed to line locations (will require some manual labeling)</li>
+                  <li>Experiement with diffrent techinques (larger tile sizes, diffrent models) that allow the model to use lines as labels even when only pylons are visible</li>
+                </ul>
                 <p> To improve high voltage line detection preformance, we could combine imagery from multiple sources (ie. SAR, infared, and optical) to so that the model can identify mountains reduce false positives. The infrastructure to do this would be useful for other tasks, </p>
               </div>
             
