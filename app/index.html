@@ -95,7 +95,14 @@
 
                 <h2 id="title-summary">Summary</h2>
 
-                <p class="dropcap">We demonstrated the feasibility of using Skynet to detect high voltage lines at very low resolutions using a previously unused imagery band called SAR-C. We also demonstrated that readily available optical imagery sources with existing training data, even at the highest resolutions, cannot detect power lines. However, we identified several new approaches methods that could make optical imagery workable.</p>
+                <p class="dropcap">Mapping power infrastructure - power lines and substations - is a problem that poses a unique set of challenges. Machine learning on satellite imagery is an approach that has the potential to facilitate this effort at scale, especially to map higher voltage infrastructure. This research effort assesses the feasibility of deep learning for grid detection in Non-Western areas like Sub Saharan Africa.</p>
+                <p>The main take-aways at this stage are:</p>
+                <ul>
+                  <li><a href="https://developmentseed.org/blog/2017/01/30/machine-learning-learnings/" target="_blank">SkyNet</a> is able to detect metal pylons and high voltage lines at very low resolutions using SAR data</li>
+                  <li>with SAR, the accuracy of the current model is about 75%, which we believe can be tuned to upward of 85%</li>
+                  <li>a methodology relying solely on SAR does not work in mountainous areas</li>
+                  <li>using optical imagery sources, SkyNet is currently not able to detect power lines, even at high resolution. We have identified new approaches that could make optical imagery work</li>
+                </ul>
 
                 <h2 id="title-background">Background</h2>
 
@@ -104,7 +111,7 @@
                 <figure class="align-center">
                   <img src="assets/graphics/content/sentinel-1.jpg" alt="Sentinel-1 flys over Earth emmiting radio waves that capture imagery of the ground despite cloud cover" />
                 </figure>
-                <p>SAR-C images are captured in the same band of radio waves that wifi uses. In many respects, they are simpler to deal with than optical images - they don’t have clouds or shadows. They are also readily available. The ESA provides global SAR coverage with it’s Sentinel-1 constellation of satellites.</p>
+                <p>SAR-C images are captured in the same band of radio waves that wifi uses. In many respects, they are simpler to deal with than optical images - they don’t have clouds or shadows. They are also readily available under a public license. The ESA provides global SAR coverage with its Sentinel-1 constellation of satellites.</p>
                 
                 <p>Usually, SAR images measure  “surface roughness” (though they can also be used to measure a variety of other things, like terrain altitude). Very smooth surfaces, like desert, appear black, and rough surfaces like trees appear lighter. Somewhat rough surfaces like grass are grey.</p>
                 <figure class="align-center">
