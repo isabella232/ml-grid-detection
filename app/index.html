@@ -88,15 +88,6 @@
 
         <!-- inpage -->
         <section class="inpage">
-          <header class="inpage__header">
-            <div class="inner">
-              <div class="inpage__headline">
-                <p class="inpage__subtitle">Section title</p>
-                <h1 class="inpage__title">Page title</h1>
-              </div>
-            </div>
-          </header>
-
           <div class="inpage__body">
             <div class="inner">
 
@@ -104,7 +95,14 @@
 
                 <h2 id="title-summary">Summary</h2>
 
-                <p class="dropcap">We demonstrated the feasibility of using Skynet to detect high voltage lines at very low resolutions using a previously unused imagery band called SAR-C. We also demonstrated that readily available optical imagery sources with existing training data, even at the highest resolutions, cannot detect power lines. However, we identified several new approaches methods that could make optical imagery workable.</p>
+                <p class="dropcap">Mapping power infrastructure - power lines and substations - is a problem that poses a unique set of challenges. Machine learning on satellite imagery is an approach that has the potential to facilitate this effort at scale, especially to map higher voltage infrastructure. This research effort assesses the feasibility of deep learning for grid detection in Non-Western areas like Sub Saharan Africa.</p>
+                <p>The main take-aways at this stage are:</p>
+                <ul>
+                  <li><a href="https://developmentseed.org/blog/2017/01/30/machine-learning-learnings/" target="_blank">SkyNet</a> is able to detect metal pylons and high voltage lines at very low resolutions using SAR data</li>
+                  <li>with SAR, the accuracy of the current model is about 75%, which we believe can be tuned to upward of 85%</li>
+                  <li>a methodology relying solely on SAR does not work in mountainous areas</li>
+                  <li>using optical imagery sources, SkyNet is currently not able to detect power lines, even at high resolution. We have identified new approaches that could make optical imagery work</li>
+                </ul>
 
                 <h2 id="title-background">Background</h2>
 
@@ -113,7 +111,7 @@
                 <figure class="align-center">
                   <img src="assets/graphics/content/sentinel-1.jpg" alt="Sentinel-1 flys over Earth emmiting radio waves that capture imagery of the ground despite cloud cover" />
                 </figure>
-                <p>SAR-C images are captured in the same band of radio waves that wifi uses. In many respects, they are simpler to deal with than optical images - they don’t have clouds or shadows. They are also readily available. The ESA provides global SAR coverage with it’s Sentinel-1 constellation of satellites.</p>
+                <p>SAR-C images are captured in the same band of radio waves that wifi uses. In many respects, they are simpler to deal with than optical images - they don’t have clouds or shadows. They are also readily available under a public license. The ESA provides global SAR coverage with its Sentinel-1 constellation of satellites.</p>
                 
                 <p>Usually, SAR images measure  “surface roughness” (though they can also be used to measure a variety of other things, like terrain altitude). Very smooth surfaces, like desert, appear black, and rough surfaces like trees appear lighter. Somewhat rough surfaces like grass are grey.</p>
                 <figure class="align-center">
@@ -172,7 +170,7 @@
                 <p>Other times, mountainous terrain gives false positives - the program guesses the existence of a powerline where there isn’t one. This problem could be solved by preprocessing the data to remove tiles with mountains in them or by adding Landsat images as an additional input which would allow the program detect what sorts of terrain it is seeing and avoid false positives accordingly.</p>
                 <figure class="align-center">
                   <img src="assets/graphics/content/false-positive.png" alt="The SAR image of mountains looks sort of like powerlines, so the algorithm produces a false positive." />
-                  <figcaption>False positive in mountainous aread</figcaption>
+                  <figcaption>False positive in mountainous areas</figcaption>
                 </figure>
                 <figure class="align-center">
                   <img src="assets/graphics/content/too-many-mountains.png" alt="The powerlines aren't visible in the SAR image because there is so much noise from the surrounding moutnains." />
@@ -186,19 +184,20 @@
 
                 <h2 id="title-conclusions">Conclusions</h2>
 
-                <h3>Feasability</h3>
+                <h3>Feasibility</h3>
                 <p>The current SAR model, if used in conjunction with human reviewers, would provide a feasible option for mapping Africa's high voltage power infrastructure. Given our model's accuracy and recall, it would narrow the area of Africa that might contain high voltage powerlines down to 160,000 zoom level 12 tiles, which could be verified on a program like Mapswipe with around 150 person hours. Total server costs for processing every tile in Africa would be about $275.</p>
 
                 <h3>Further Steps</h3>
 
                 <p>Given that it is currently feasible to search all of Africa for high voltage pylons, future research should focus detecting low voltage pylons. We identified several next steps that could be taken to attempt to identify low voltage pylons:</p>
-                <ul>•Impliment an image classification model</ul>
-                <ul>•Switch to png image sources</ul>
-                <ul>•Recreate powerline dataset, dr</ul>
-                <ul>•Create a dataset with pylon locations as opposed to line locations (will require some manual labeling)</ul>
-                <ul>•Experiement with diffrent techinques (larger tile sizes, diffrent models) that allow the model to use lines as labels even when only pylons are visible</ul>
-
-                <p> To improve high voltage line detection preformance, we could combine imagery from multiple sources (ie. SAR, infared, and optical) to so that the model can identify mountains reduce false positives. The infrastructure to do this would be useful for other tasks, </p>
+                <ul>
+                  <li>Implement an image classification model</li>
+                  <li>Switch to png image sources</li>
+                  <li>Recreate powerline dataset</li>
+                  <li>Create a dataset with pylon locations as opposed to line locations (will require some manual labeling)</li>
+                  <li>Experiment with different techniques (larger tile sizes, different models) that allow the model to use lines as labels even when only pylons are visible</li>
+                </ul>
+                <p> To improve high voltage line detection performance, we could combine imagery from multiple sources (ie. SAR, infrared, and optical) to so that the model can identify mountains reduce false positives. The infrastructure to do this would be useful for other tasks, </p>
               </div>
             
             </div>
