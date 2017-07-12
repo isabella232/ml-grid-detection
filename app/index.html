@@ -150,6 +150,10 @@
                   <img src="assets/graphics/content/failed-optical.png" alt="Even though the powerlines are visible, the prediction is incorrect." />
                   <figcaption>Left: Powerlines, Right: Prediction</figcaption>
                 </figure>
+                <figure>
+                  <div id="map-optical" style="height: 360px;"></div>
+                  <figcaption>An interactive map showing an area where powerlines are visible from aerial imagery.</figcaption>
+                </figure>
                 <p>Currently, we use an approach called semantic segmentation, where we ask the computer to “draw” the lines on the image. However, zoomed this far in, the difference between the physical location of the powerline and the location reported in Africa Grid Explorer is significant. The location of the line on the image therefore uncorrelated with the “correct” answer provided by the label. The program has no information it can use to make guesses.</p>
                 <p>We are working on switching to a different method, image classification, where the computer merely guesses whether or not the image container a power line. This has some disadvantages - it requires more labeled data and more data preprocessing. However, it should make it possible to use less accurate maps as labels.</p>
                 <p>Another contributing factor to the lack of success in using optical images is the image file format we use. Currently, all of the satellite images we use are downloaded as JPEGs, a format reduces file size by distorting sharp edges in images. Because we are trying to detect tiny objects with sharp edges (powerlines and pylons), JPEG makes them less visible.</p>
@@ -176,7 +180,7 @@
                 </figure>
                 <p>Currently, our program is about 75% accurate (for a given image, there is a 75% chance that the program correctly decided whether or not it has a powerline in it). This can be tuned to favor completeness of up to 85% (i.e. 85% of images with powerlines are identified as having power lines) or precision of up to 80% (i.e. 80% of images identified as having power lines actually have power lines in them).</p>
                 <figure>
-                  <div id="map" style="height: 360px;"></div>
+                  <div id="map-sar" style="height: 360px;"></div>
                   <figcaption>An interactive map showing the model's predictions in an area of South Africa with a lot of powerlines</figcaption>
                 </figure>
 
@@ -227,10 +231,14 @@
       ga('send', 'pageview');
 
     </script>
+    http://a.aerial.openstreetmap.org.za/ngi-aerial/{z}/{x}/{y}.jpg
     <script>
-      var mymap = L.map('map', {zoomControl:false, minZoom:12}).setView([-30.1, 26.5], 12);
+      var mymap = L.map('map-sar', {zoomControl:false, minZoom:12}).setView([-30.1, 26.5], 12);
       L.tileLayer('https://tiles-b.descarteslabs.com/xyz/sentinel-1_v2/vv_2014-2017/{z}/{x}/{y}/tile.jpeg?={accessToken}', { accessToken: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc19hbm9uIjpmYWxzZSwic3ViIjoiZ29vZ2xlLW9hdXRoMnwxMTAyMTc0MjAwODgyNjY1MDgxODUiLCJpc3MiOiJodHRwczovL2Rlc2NhcnRlc2xhYnMuYXV0aDAuY29tLyIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoiRWxpIExpdHdhY2siLCJncm91cHMiOlsicHVibGljIiwiYmV0YSJdLCJpYXQiOjE0OTk3NzcxMDEsImV4cCI6MTQ5OTgxMzEwMSwiZW1haWwiOiJlbGlAZGV2ZWxvcG1lbnRzZWVkLm9yZyIsImF1ZCI6IlpPQkFpNFVST2w1Z0taSXB4eGx3T0VmeDhLcHFYZjJjIn0._lHYsjFYFy45o1n9svOgPKmBB95PPya_IsYrszDCKwY', maxZoom: 12}).addTo(mymap);
       L.tileLayer('https://s3.amazonaws.com/ds-skynet-power/mixed-lr-test-worldwide-20k-iter/{z}/{x}/{y}.png', {maxZoom: 12,  opacity: .5}).addTo(mymap);
+
+      var opticalmap = L.map('map-optical', {zoomControl:true, minZoom:10}).setView([-30.1 + .08, 26.5 - .14], 17);
+      L.tileLayer('http://a.aerial.openstreetmap.org.za/ngi-aerial/{z}/{x}/{y}.jpg', {maxZoom: 20}).addTo(opticalmap);
     </script>
 
     <!-- build:js assets/scripts/vendor.js -->
