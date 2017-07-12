@@ -189,15 +189,10 @@
 
                 <h3>Further Steps</h3>
 
-                <p>Given that it is currently feasible to search all of Africa for high voltage pylons, future research should focus detecting low voltage pylons. We identified several next steps that could be taken to attempt to identify low voltage pylons:</p>
-                <ul>
-                  <li>Implement an image classification model</li>
-                  <li>Switch to png image sources</li>
-                  <li>Recreate powerline dataset</li>
-                  <li>Create a dataset with pylon locations as opposed to line locations (will require some manual labeling)</li>
-                  <li>Experiment with different techniques (larger tile sizes, different models) that allow the model to use lines as labels even when only pylons are visible</li>
-                </ul>
-                <p> To improve high voltage line detection performance, we could combine imagery from multiple sources (ie. SAR, infrared, and optical) to so that the model can identify mountains reduce false positives. The infrastructure to do this would be useful for other tasks, </p>
+                <p>Though the current solution to detecting high voltage powerlines is workable, it could be significantly improved. Additionally, much of the research needed to needed to improve quality on high voltage lines could also be applied to low voltage lines.</p>
+                <p>The step that will most directly improve the current model would be adding more bands of imagery to the data. If we combined SAR data with optical or near-infrared images, the model could learn which areas are mountains, forests, and cities and avoid false positives. We could also implement a image classification model, which would give less granular but potentially more accurate information about where powerlines are.</p>
+                <p>There are also a variety of smaller changes we could make that could significantly improve preformance. By varying things like how many images the machine learning algorithm views at once, how much weight it puts on individual wrong answers, and a host of other parameters, we could optimize our model. Given that our current parameters were already carefully tuned for optical images, there probably isn't a lot of work to be done here - but it could yield a few percentage points of improvement.</p>
+                <p>We could also do more work to make optical images a viable option, like switching to from JPEG to PNG images and creating a dataset with more accurate line locations, perhaps by by manually tracing over imagery. We could also create a dataset of pylon locations. These would probably necessary steps for detecting low voltage lines.</p>
               </div>
             
             </div>
