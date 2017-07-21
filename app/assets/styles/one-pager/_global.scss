@@ -3,12 +3,12 @@
    ========================================================================== */
 
 .page--one-pager {
-  .inpage__header {
+  .inpage__headline {
     display: none;
   }
 
   .inpage__body {
-    padding: ($global-spacing * 2) 0;
+    padding: 0 0 ($global-spacing * 2) 0;
 
     h2 {
       &::after {
