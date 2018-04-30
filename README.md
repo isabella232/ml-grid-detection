@@ -1,4 +1,5 @@
 # ML for grid detection
+This report is published on https://devseed.com/ml-grid-detection. A new version of this report including an update to the methodology and the mapping results for Nigeria, Zambia, and Pakistan, can be found on https://devseed.com/ml-grid-docs.
 
 ## Gulp for building
 The gulpfile is based on the [gulp-webapp](https://github.com/yeoman/generator-gulp-webapp) yeoman generator. The build system currently supports:
